@@ -10,10 +10,10 @@ import { Thumbs } from 'swiper/modules';
 import { Swiper as SwiperType } from 'swiper/types';
 import { postBookingRoom } from '@/app/api/bookingService';
 import toast from 'react-hot-toast';
-import ShowConfirm from '@/app/hotel/[hotelId]/FormConfirmBooking';
+import ShowConfirm from "@/app/(main)/hotel/[hotelId]/FormConfirmBooking";
 import { useTranslation } from 'react-i18next';
 import { translateText } from "@/lib/translate";
-import { CheckMobilePhone } from '@/app/components/HOC/ResponsiveCustom.';
+import { CheckMobilePhone } from '@/app/components/HOC/ResponsiveCustom';
 import {
     Carousel,
     CarouselContent,

@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaArrowUp } from 'react-icons/fa';
 import { MdTranslate } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
-import { CheckDesktop, CheckMobilePhone, CheckTablet } from '../HOC/ResponsiveCustom.';
+import { CheckDesktop, CheckMobilePhone, CheckTablet } from '@/app/components/HOC/ResponsiveCustom';
 
 const Footer = () => {
     const { i18n, t } = useTranslation();

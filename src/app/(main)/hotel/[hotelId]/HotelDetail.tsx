@@ -23,7 +23,7 @@ import dayjs from "dayjs";
 import RoomDetailModal from './RoomDetailModal';
 import { addFavorite } from '@/app/api/favoriteService';
 import { useTranslation } from 'react-i18next';
-import { CheckDesktop, CheckMobilePhone, CheckTablet } from '@/app/components/HOC/ResponsiveCustom.';
+import { CheckDesktop, CheckMobilePhone, CheckTablet } from '@/app/components/HOC/ResponsiveCustom';
 import Image from 'next/image';
 type Props = {
     hotel: Hotels;

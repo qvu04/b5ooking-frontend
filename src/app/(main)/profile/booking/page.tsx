@@ -16,7 +16,7 @@ import {
     AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 import toast from "react-hot-toast";
-import { CheckDesktop, CheckMobilePhone, CheckTablet } from "@/app/components/HOC/ResponsiveCustom.";
+import { CheckDesktop, CheckMobilePhone, CheckTablet } from "@/app/components/HOC/ResponsiveCustom";
 import { paymentOnlineService } from '@/app/api/payment-onlineService';
 import Image from 'next/image';
 

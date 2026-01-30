@@ -1,7 +1,7 @@
 'use client';
 
 import { useForm } from "react-hook-form";
-import { updateUserService } from "../api/userService";
+import { updateUserService } from "@/app/api/userService";
 import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { setUserLoginAction } from "@/redux/features/userSlice";
@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { FaCamera, FaUserAlt } from "react-icons/fa";
 import { RootState } from "@/lib/store";
 import { useTranslation } from "react-i18next";
-import { CheckDesktop, CheckMobilePhone, CheckTablet } from "../components/HOC/ResponsiveCustom.";
+import { CheckDesktop, CheckMobilePhone, CheckTablet } from "@/app/components/HOC/ResponsiveCustom";
 import Image from 'next/image';
 
 export default function EditProfileUser({

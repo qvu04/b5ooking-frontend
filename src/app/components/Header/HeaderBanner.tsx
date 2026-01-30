@@ -1,3 +1,4 @@
+"use client"
 import { AutoComplete, InputNumber, Button, DatePicker } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import toast from 'react-hot-toast';
@@ -9,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
-import { CheckDesktop, CheckMobilePhone, CheckTablet } from '../HOC/ResponsiveCustom.';
+import { CheckDesktop, CheckMobilePhone, CheckTablet } from '@/app/components/HOC/ResponsiveCustom';
 export default function HeaderBanner() {
     const [location, setLocation] = useState("");
     const [guestCount, setGuestCount] = useState(1);

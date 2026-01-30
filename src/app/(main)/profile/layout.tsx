@@ -1,5 +1,5 @@
 import React from 'react';
-import SidebarMenu from '../components/SidebarMenu/SidebarMenu';
+import SidebarMenu from '@/app/components/SidebarMenu/SidebarMenu';
 
 export default function ProfileLayout({ children }: { children: React.ReactNode }) {
     return (

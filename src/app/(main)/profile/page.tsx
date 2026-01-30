@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { hideLoading, showLoading } from '@/redux/features/loadingSlice';
 import { useAppDispatch } from '@/redux/hook';
 import { useTranslation } from "react-i18next";
-import { CheckDesktop, CheckMobilePhone, CheckTablet } from "../components/HOC/ResponsiveCustom.";
+import { CheckDesktop, CheckMobilePhone, CheckTablet } from "@/app/components/HOC/ResponsiveCustom";
 import Image from 'next/image';
 
 export default function Profile() {

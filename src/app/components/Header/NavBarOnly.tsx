@@ -15,7 +15,7 @@ import { setUserLogoutAction } from "@/redux/features/userSlice";
 import toast from "react-hot-toast";
 import { RootState } from "@/lib/store";
 import { hideLoading, showLoading } from "@/redux/features/loadingSlice";
-import { CheckDesktop, CheckMobilePhone, CheckTablet } from '@/app/components/HOC/ResponsiveCustom.';
+import { CheckDesktop, CheckMobilePhone, CheckTablet } from '@/app/components/HOC/ResponsiveCustom';
 import {
     AlertDialog,
     AlertDialogCancel,
