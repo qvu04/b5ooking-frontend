@@ -5,9 +5,19 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import vi from "@/locales/vi/translation.json";
 import en from "@/locales/en/translation.json";
 
+// --- THÊM ĐOẠN NÀY ĐỂ DEBUG TRÊN VERCEL (Xem Logs trên web) ---
+console.log("Check data VI loaded:", vi);
+// -------------------------------------------------------------
+
 const resources = {
-    vi: { translation: vi },
-    en: { translation: en },
+    vi: {
+        // Sửa dòng này: Kiểm tra nếu có .default thì lấy .default, không thì lấy vi
+        translation: (vi as any)?.default || vi
+    },
+    en: {
+        // Sửa dòng này tương tự
+        translation: (en as any)?.default || en
+    },
 } as const;
 
 i18n
@@ -16,6 +26,8 @@ i18n
     .init({
         resources,
         fallbackLng: "vi",
+        // Thêm debug: true để nó in lỗi chi tiết ra console nếu thiếu key
+        debug: process.env.NODE_ENV === 'development',
         interpolation: { escapeValue: false },
         detection: {
             order: ["localStorage", "navigator"],
