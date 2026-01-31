@@ -41,12 +41,14 @@ export default function BookingSuccessClient() {
                 console.error(error);
                 setStatus("failed");
                 toast.error("Lỗi xác minh thanh toán.");
-            } finally {
-                // 3. Đảm bảo dù thành công hay thất bại cũng sẽ chuyển trang sau 2s
+            } // ... bên trong finally
+            finally {
                 setTimeout(() => {
-                    console.log("Đang chuyển hướng..."); // Check log xem chạy vào đây ko
-                    router.push("/profile/booking");
-                    router.refresh(); // Refresh để đảm bảo load lại dữ liệu mới nhất
+                    // CÁCH CŨ: router.push("/profile/booking"); 
+                    // -> Dễ bị lỗi trên Vercel nếu router chưa sẵn sàng
+
+                    // CÁCH MỚI: Ép trình duyệt chuyển hướng cứng
+                    window.location.href = "/profile/booking";
                 }, 2000);
             }
         };
