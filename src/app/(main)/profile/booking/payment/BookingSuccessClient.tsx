@@ -1,34 +1,41 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation"; // Bỏ useRouter vì dùng window.location
 import toast from "react-hot-toast";
 import { verifyPaymentOnlineService } from "@/app/api/payment-onlineService";
 
 export default function BookingSuccessClient() {
     const searchParams = useSearchParams();
     const sessionId = searchParams.get("session_id");
-    const router = useRouter();
     const [status, setStatus] = useState<"loading" | "success" | "failed">("loading");
 
-    // 1. Dùng useRef để chặn việc gọi API 2 lần (quan trọng)
+    // Chặn gọi 2 lần
     const hasRan = useRef(false);
 
     useEffect(() => {
-        // 2. Nếu không có session_id thì đá về trang chủ ngay
+        // --- 1. KÍCH HOẠT BOM HẸN GIỜ (SAFETY REDIRECT) ---
+        // Dù API có bị treo, đúng 4 giây sau nó sẽ tự chuyển trang.
+        const safetyTimer = setTimeout(() => {
+            console.log("⏰ Hết giờ! Ép buộc chuyển trang...");
+            window.location.href = "/profile/booking";
+        }, 4000);
+
+        // --- 2. KIỂM TRA SESSION ID ---
         if (!sessionId) {
             toast.error("Không tìm thấy thông tin thanh toán!");
-            router.push("/");
+            // Không cần redirect ở đây nữa vì safetyTimer sẽ lo
             return;
         }
 
-        // Nếu đã chạy rồi thì không chạy lại nữa
         if (hasRan.current) return;
         hasRan.current = true;
 
         const verifyPayment = async () => {
             try {
+                console.log("🚀 Bắt đầu gọi API verify...");
                 const res = await verifyPaymentOnlineService(sessionId);
+                console.log("✅ API trả về:", res);
 
                 if (res.data.data.paid) {
                     setStatus("success");
@@ -38,28 +45,26 @@ export default function BookingSuccessClient() {
                     toast.error("Thanh toán chưa được xác nhận.");
                 }
             } catch (error) {
-                console.error(error);
+                console.error("❌ Lỗi gọi API:", error);
                 setStatus("failed");
                 toast.error("Lỗi xác minh thanh toán.");
-            } // ... bên trong finally
-            finally {
-                setTimeout(() => {
-                    // CÁCH CŨ: router.push("/profile/booking"); 
-                    // -> Dễ bị lỗi trên Vercel nếu router chưa sẵn sàng
-
-                    // CÁCH MỚI: Ép trình duyệt chuyển hướng cứng
-                    window.location.href = "/profile/booking";
-                }, 2000);
             }
+            // Lưu ý: Không cần finally redirect nữa vì safetyTimer ở trên đã chạy rồi.
+            // Nếu API chạy xong sớm hơn 4s, ta có thể clear timer cũ và redirect ngay lập tức (tuỳ chọn),
+            // nhưng để an toàn cứ để safetyTimer lo liệu là chắc nhất.
         };
 
         verifyPayment();
 
-    }, [sessionId, router]);
+        // Cleanup function: Nếu component bị unmount thì xóa timer (tránh memory leak)
+        return () => clearTimeout(safetyTimer);
+
+    }, [sessionId]);
 
     if (status === "loading") return (
         <div className="flex flex-col items-center justify-center h-[80vh]">
             <p className="text-xl animate-pulse">⏳ Đang xác minh thanh toán...</p>
+            <p className="text-sm text-gray-400 mt-2">Sẽ tự động chuyển trang sau vài giây...</p>
         </div>
     );
 
