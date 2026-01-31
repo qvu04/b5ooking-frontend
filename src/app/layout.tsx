@@ -4,7 +4,6 @@ import "./globals.css";
 import 'leaflet/dist/leaflet.css';
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { Providers } from './providers';
-import "@/lib/i18n";
 import ClientLayout from "./components/Template/ClientLayout";
 import { ReduxProvider } from '@/redux/provider'
 import { Toaster } from "react-hot-toast";

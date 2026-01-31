@@ -1,9 +1,9 @@
 'use client';
-
 import { usePathname } from 'next/navigation';
 import NavBarOnly from '../Header/NavBarOnly';
 import HeaderBanner from '../Header/HeaderBanner';
 import Footer from '../Footer/page';
+import "@/lib/i18n";
 import { ChatBox } from '../ChatBox';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
