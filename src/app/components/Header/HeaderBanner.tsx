@@ -80,7 +80,6 @@ export default function HeaderBanner() {
                         muted
                         loop
                         preload="none"
-                        poster="/images/logo-b5ooking.png"
                         className="absolute inset-0 w-full h-full object-cover z-0"
                         src="/videos/header.mp4" />
                     <div className="absolute inset-0 bg-black/40 z-10" />
@@ -167,7 +166,6 @@ export default function HeaderBanner() {
                         muted
                         loop
                         preload="none"
-                        poster="/images/logo-b5ooking.png"
                         className="absolute inset-0 w-full h-full object-cover z-0"
                         src="/videos/header.mp4" />
                     <div className="absolute inset-0 bg-black/40 z-10" />
@@ -254,7 +252,6 @@ export default function HeaderBanner() {
                         muted
                         loop
                         preload="none"
-                        poster="/images/logo-b5ooking.png"
                         className="absolute inset-0 w-full h-full object-cover z-0"
                         src="/videos/header.mp4" />
                     <div className="absolute inset-0 bg-black/40 z-10" />
